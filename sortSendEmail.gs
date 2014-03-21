@@ -5,10 +5,10 @@
  */
 function sendEmail() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  
-  // Change to the "form responses" spreadsheet
+  // Change to the "form responses" spreadsheet and sort Z to A
   var sheet = ss.getSheetByName("Requests");
   sheet.sort(4, false);
+  // Get info needed for generated emails
   var emailRange = sheet.getRange("E2");
   var email = emailRange.getValue();
   var deptRange = sheet.getRange("F2");
@@ -27,8 +27,8 @@ function sendEmail() {
   var hour = date.getHours();
   var minutes = date.getMinutes();
   var seconds = date.getSeconds();
-  var newCell = sheet.getRange("C2");
-  newCell.setValue(firstInitial +
+  var jobNameCell = sheet.getRange("C2");
+  jobNameCell.setValue(firstInitial +
                    lastInitial + '-' +
                    projectName + '-' +
                    month + '/' +
